@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from "react";
+import { useTheme } from "next-themes";
 import {
   Avatar,
   AvatarImage,
@@ -26,10 +27,10 @@ import {
   BookOpen,
   ChevronLeft,
   ChevronRight as ChevronRightIcon,
-  X,
   Sun,
   Moon,
 } from "lucide-react";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
 
 const allTech = {
   Frontend: ["React", "Next.js", "Tailwind CSS", "TypeScript", "Redux", "Vue.js"],
@@ -38,27 +39,28 @@ const allTech = {
 };
 
 export default function PortfolioPage() {
-  const [darkMode, setDarkMode] = useState(false);
   const [viewAllOpen, setViewAllOpen] = useState(false);
+  const { theme, setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  // Toggle the 'dark' class on the <html> element
-  useEffect(() => {
-    const root = document.documentElement;
-    if (darkMode) {
-      root.classList.add("dark");
-    } else {
-      root.classList.remove("dark");
-    }
-  }, [darkMode]);
+  // Ensure theme is mounted to avoid hydration mismatch
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
+
+  const isDark = resolvedTheme === "dark";
+
+  const toggleTheme = () => {
+    setTheme(isDark ? "light" : "dark");
+  };
 
   return (
-    <div className="min-h-screen bg-white text-gray-800 dark:bg-gray-950 dark:text-gray-100 font-sans antialiased transition-colors duration-200">
+    <div className="bg-white dark:bg-gray-950 text-gray-800 dark:text-gray-100 font-sans antialiased transition-colors">
       <div className="max-w-[1100px] mx-auto px-8 py-12 space-y-16">
         {/* ========== HEADER ========== */}
         <header className="relative flex flex-wrap items-start gap-6">
           <Avatar className="w-32 h-32 rounded-xl overflow-hidden shadow-sm">
             <AvatarImage src="/avatar-placeholder.jpg" alt="Matthew C. Balinton" />
-            <AvatarFallback className="text-4xl bg-gray-100 text-gray-400 dark:bg-gray-800 dark:text-gray-500">
+            <AvatarFallback className="text-4xl bg-gray-100 dark:bg-gray-800 text-gray-400">
               MB
             </AvatarFallback>
           </Avatar>
@@ -72,7 +74,7 @@ export default function PortfolioPage() {
             </div>
 
             <div className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 mt-1">
-              <MapPin className="w-4 h-4" />
+              <MapPin className="w-4 h-4 text-gray-500 dark:text-gray-400" />
               <span>Philippines</span>
             </div>
 
@@ -81,25 +83,29 @@ export default function PortfolioPage() {
             </p>
 
             <div className="flex flex-wrap items-center gap-3 mt-4">
-              <Button className="bg-black hover:bg-gray-900 dark:bg-white dark:text-black dark:hover:bg-gray-200 text-white gap-2 shadow-sm">
+              <Button className="bg-black hover:bg-gray-900 text-white gap-2 shadow-sm dark:bg-white dark:text-black dark:hover:bg-gray-100">
                 Schedule a Call
                 <ChevronRight className="w-4 h-4" />
               </Button>
-              <Button variant="outline" className="gap-2 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800">
+              <Button variant="outline" className="gap-2 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800">
                 <Mail className="w-4 h-4" />
                 Send Email
               </Button>
-              <Button variant="outline" className="gap-2 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800">
+              <Button variant="outline" className="gap-2 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800">
                 <BookOpen className="w-4 h-4" />
                 Read my blog
               </Button>
             </div>
           </div>
 
-          {/* Dark mode toggle */}
+          {/* Dark Mode Toggle */}
           <div className="absolute top-0 right-0 flex items-center gap-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full px-3 py-1 text-xs text-gray-500 dark:text-gray-400">
             <Sun className="w-3.5 h-3.5" />
-            <Switch checked={darkMode} onCheckedChange={setDarkMode} />
+            <Switch
+              checked={isDark}
+              onCheckedChange={toggleTheme}
+              aria-label="Toggle dark mode"
+            />
             <Moon className="w-3.5 h-3.5" />
           </div>
         </header>
@@ -113,9 +119,19 @@ export default function PortfolioPage() {
               <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">About</h2>
               <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300 mb-3">
                 I’m a full-stack developer passionate about building scalable web
-                applications and seamless user experiences...
+                applications and seamless user experiences. With a strong
+                foundation in both frontend and backend technologies, I deliver
+                end-to-end solutions that drive business value.
               </p>
-              {/* ... keep the rest of the about text */}
+              <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300 mb-3">
+                Over the years I’ve contributed to projects ranging from travel
+                order systems to health platforms, always focusing on clean code
+                and intuitive design.
+              </p>
+              <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+                Currently based in the Philippines, I enjoy collaborating with
+                teams worldwide and continuously expanding my skill set.
+              </p>
             </div>
 
             {/* Tech Stack with Dialog */}
@@ -128,7 +144,7 @@ export default function PortfolioPage() {
                       View All &gt;
                     </button>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-md dark:bg-gray-900 dark:border-gray-700">
+                  <DialogContent className="sm:max-w-md dark:bg-gray-900 dark:border-gray-800">
                     <DialogHeader>
                       <DialogTitle className="text-xl font-bold dark:text-white">Full Technology Stack</DialogTitle>
                     </DialogHeader>
@@ -141,7 +157,7 @@ export default function PortfolioPage() {
                               <Badge
                                 key={tech}
                                 variant="outline"
-                                className="bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-600 font-medium text-xs"
+                                className="bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-200 dark:border-gray-700 font-medium text-xs"
                               >
                                 {tech}
                               </Badge>
@@ -162,7 +178,7 @@ export default function PortfolioPage() {
                         <Badge
                           key={tech}
                           variant="outline"
-                          className="bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-600 font-medium text-xs"
+                          className="bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-200 dark:border-gray-700 font-medium text-xs"
                         >
                           {tech}
                         </Badge>
@@ -170,7 +186,7 @@ export default function PortfolioPage() {
                       {techs.length > 4 && (
                         <Badge
                           variant="outline"
-                          className="bg-gray-50 dark:bg-gray-800 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-600 font-medium text-xs cursor-pointer hover:text-gray-600 dark:hover:text-gray-300"
+                          className="bg-gray-50 dark:bg-gray-800 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700 font-medium text-xs cursor-pointer hover:text-gray-600 dark:hover:text-gray-300"
                           onClick={() => setViewAllOpen(true)}
                         >
                           +{techs.length - 4} more
@@ -182,30 +198,74 @@ export default function PortfolioPage() {
               </div>
             </div>
 
-            {/* Recent Projects (add dark variants to cards) */}
+            {/* Recent Projects */}
             <div>
               <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Recent Projects</h2>
               <div className="grid grid-cols-2 gap-4">
-                <Card className="border-gray-100 dark:border-gray-700 bg-gray-50/70 dark:bg-gray-800/50 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors shadow-sm rounded-lg">
+                <Card className="border-gray-100 dark:border-gray-800 bg-gray-50/70 dark:bg-gray-900/60 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors shadow-sm rounded-lg">
                   <CardContent className="p-4">
                     <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
-                      TOMS
+                      TOMS (Travel Order Management System)
                     </h3>
-                    {/* ... */}
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
+                      A comprehensive platform for managing travel orders with
+                      approval workflows.
+                    </p>
+                    <span className="inline-block mt-2 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded">
+                      toms.gov.ph
+                    </span>
                   </CardContent>
                 </Card>
-                {/* second card similarly */}
+                <Card className="border-gray-100 dark:border-gray-800 bg-gray-50/70 dark:bg-gray-900/60 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors shadow-sm rounded-lg">
+                  <CardContent className="p-4">
+                    <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
+                      HealthTrack 360
+                    </h3>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
+                      Patient health records and analytics dashboard for clinics.
+                    </p>
+                    <span className="inline-block mt-2 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded">
+                      healthtrack.ph
+                    </span>
+                  </CardContent>
+                </Card>
               </div>
             </div>
 
-            {/* Certifications (add dark variants) */}
-            {/* ... */}
+            {/* Recent Certifications */}
+            <div>
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                Recent Certifications
+              </h2>
+              <div className="space-y-2">
+                <Card className="bg-gray-50 dark:bg-gray-800 border-none shadow-none">
+                  <CardContent className="p-3">
+                    <p className="font-semibold text-sm text-gray-900 dark:text-white">
+                      CHED-UniFAST Scholar
+                    </p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      Commission on Higher Education – 2023
+                    </p>
+                  </CardContent>
+                </Card>
+                <Card className="bg-gray-50 dark:bg-gray-800 border-none shadow-none">
+                  <CardContent className="p-3">
+                    <p className="font-semibold text-sm text-gray-900 dark:text-white">
+                      AWS Cloud Practitioner
+                    </p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                      Amazon Web Services – 2024
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
 
-            {/* Footer Links – add proper social icons */}
+            {/* Footer Links */}
             <div className="grid grid-cols-2 gap-6 pt-4 border-t border-gray-100 dark:border-gray-800">
               <div>
                 <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2">A member of</p>
-                <ul className="text-xs text-gray-600 dark:text-gray-300 space-y-1">
+                <ul className="text-xs text-gray-600 dark:text-gray-400 space-y-1">
                   <li>Google Developer Groups</li>
                   <li>React Philippines</li>
                 </ul>
@@ -213,28 +273,45 @@ export default function PortfolioPage() {
               <div>
                 <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2">Social Links</p>
                 <div className="flex items-center gap-3">
-                  {/* GitHub */}
-                  <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-                    </svg>
+                  <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+                    <FaLinkedin className="w-4 h-4" />
                   </a>
-                  {/* LinkedIn */}
-                  <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                    </svg>
+                  <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+                    <FaGithub className="w-4 h-4" />
                   </a>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* RIGHT COLUMN (apply dark variants similarly) */}
+          {/* RIGHT COLUMN */}
           <aside className="col-span-5 space-y-10">
-            {/* Developer Card */}
-            <Card className="bg-gradient-to-br from-gray-900 to-black dark:from-gray-800 dark:to-gray-900 text-white shadow-sm border-0 rounded-xl">
-              {/* ... */}
+            <Card className="bg-gradient-to-br from-gray-900 to-black text-white shadow-sm border-0 rounded-xl">
+              <CardContent className="p-6">
+                <div className="flex justify-between items-start">
+                  <span className="text-lg font-mono font-bold">&gt;_</span>
+                  <div className="grid grid-cols-5 gap-0.5 w-12 h-12">
+                    {Array.from({ length: 25 }).map((_, i) => (
+                      <div
+                        key={i}
+                        className={`w-full h-full ${
+                          [0, 4, 6, 12, 14, 18, 20, 24].includes(i)
+                            ? "bg-white"
+                            : "bg-transparent"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-8 space-y-1">
+                  <p className="text-[10px] tracking-widest text-gray-400 uppercase">
+                    Developer Access Card
+                  </p>
+                  <p className="text-sm font-semibold tracking-wide">
+                    MATTHEW C. BALINTON
+                  </p>
+                </div>
+              </CardContent>
             </Card>
 
             {/* Experience */}
@@ -265,8 +342,10 @@ export default function PortfolioPage() {
             {/* Recommendations */}
             <div>
               <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Recommendations</h2>
-              <blockquote className="text-sm italic text-gray-600 dark:text-gray-300 font-serif mb-3">
-                “Matthew is one of the most dedicated developers I’ve worked with...”
+              <blockquote className="text-sm italic text-gray-600 dark:text-gray-400 font-serif mb-3">
+                “Matthew is one of the most dedicated developers I’ve worked
+                with. His attention to detail and problem‑solving skills are
+                outstanding.”
               </blockquote>
               <p className="text-sm font-medium text-gray-900 dark:text-white">Maria Santos</p>
               <p className="text-xs text-gray-500 dark:text-gray-400">CTO, HealthTrack 360</p>
@@ -282,17 +361,17 @@ export default function PortfolioPage() {
               </div>
             </div>
 
-            {/* Contact buttons (add dark outline) */}
+            {/* Contact buttons */}
             <div className="space-y-3 pt-4 border-t border-gray-100 dark:border-gray-800">
-              <Button variant="outline" className="w-full gap-2 justify-start dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800">
+              <Button variant="outline" className="w-full gap-2 justify-start dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800">
                 <Mail className="w-4 h-4" />
                 Send Email
               </Button>
-              <Button className="w-full gap-2 justify-start bg-black hover:bg-gray-900 dark:bg-white dark:text-black dark:hover:bg-gray-200 text-white">
+              <Button className="w-full gap-2 justify-start bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100">
                 <Calendar className="w-4 h-4" />
                 Schedule a Call
               </Button>
-              <Button variant="outline" className="w-full gap-2 justify-start dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800">
+              <Button variant="outline" className="w-full gap-2 justify-start dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800">
                 <BookOpen className="w-4 h-4" />
                 Read my Blog
               </Button>
@@ -304,7 +383,7 @@ export default function PortfolioPage() {
         <section>
           <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Gallery</h2>
           <div className="relative">
-            <button className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 shadow-sm">
+            <button className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 shadow-sm">
               <ChevronLeft className="w-4 h-4" />
             </button>
             <div className="grid grid-cols-4 gap-4 px-12">
@@ -315,7 +394,7 @@ export default function PortfolioPage() {
                 ></div>
               ))}
             </div>
-            <button className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 shadow-sm">
+            <button className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 shadow-sm">
               <ChevronRightIcon className="w-4 h-4" />
             </button>
           </div>
@@ -323,7 +402,7 @@ export default function PortfolioPage() {
 
         {/* FOOTER */}
         <footer className="py-8 border-t border-gray-100 dark:border-gray-800">
-          <p className="text-center text-xs text-gray-500 dark:text-gray-400">
+          <p className="text-center text-xs text-gray-500 dark:text-gray-500">
             © 2026 Matthew C. Balinton. All rights reserved.
           </p>
         </footer>
