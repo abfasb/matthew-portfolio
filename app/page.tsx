@@ -31,10 +31,11 @@ import {
   Moon,
 } from "lucide-react";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
+import logo from "@/public/matt-id.jpg";
 
 const allTech = {
-  Frontend: ["React", "Next.js", "Tailwind CSS", "TypeScript", "Redux", "Vue.js"],
-  Backend: ["Node.js", "Laravel", "Prisma", "Supabase", "Express", "GraphQL"],
+  Frontend: ["React", "Next.js", "Tailwind CSS", "TypeScript", "Redux"],
+  Backend: ["Node.js", "Laravel", "Prisma", "Supabase", "Express", "REST APIs"],
   "DevOps & Cloud": ["Docker", "Vercel", "AWS", "GitHub Actions", "Firebase"],
 };
 
@@ -43,7 +44,6 @@ export default function PortfolioPage() {
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  // Ensure theme is mounted to avoid hydration mismatch
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;
 
@@ -58,8 +58,8 @@ export default function PortfolioPage() {
       <div className="max-w-[1100px] mx-auto px-8 py-12 space-y-16">
         {/* ========== HEADER ========== */}
         <header className="relative flex flex-wrap items-start gap-6">
-          <Avatar className="w-32 h-32 rounded-xl overflow-hidden shadow-sm">
-            <AvatarImage src="/avatar-placeholder.jpg" alt="Matthew C. Balinton" />
+          <Avatar className="w-32 h-32 overflow-hidden shadow-sm">
+            <AvatarImage src={logo.src} alt="Matthew C. Balinton" />
             <AvatarFallback className="text-4xl bg-gray-100 dark:bg-gray-800 text-gray-400">
               MB
             </AvatarFallback>
@@ -79,21 +79,17 @@ export default function PortfolioPage() {
             </div>
 
             <p className="font-medium text-gray-800 dark:text-gray-200 mt-2">
-              Full-Stack Developer \ MERN \ Next.js \ PHP
+              Full-Stack Developer | Tech Enthusiast
             </p>
 
             <div className="flex flex-wrap items-center gap-3 mt-4">
-              <Button className="bg-black hover:bg-gray-900 text-white gap-2 shadow-sm dark:bg-white dark:text-black dark:hover:bg-gray-100">
-                Schedule a Call
-                <ChevronRight className="w-4 h-4" />
+              <Button variant="outline" className="bg-black hover:bg-gray-900 text-white gap-2 shadow-sm dark:bg-white dark:text-black dark:hover:bg-gray-100">
+                <BookOpen className="w-4 h-4" />
+               Download Resume
               </Button>
               <Button variant="outline" className="gap-2 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800">
                 <Mail className="w-4 h-4" />
                 Send Email
-              </Button>
-              <Button variant="outline" className="gap-2 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800">
-                <BookOpen className="w-4 h-4" />
-                Read my blog
               </Button>
             </div>
           </div>
@@ -261,27 +257,6 @@ export default function PortfolioPage() {
               </div>
             </div>
 
-            {/* Footer Links */}
-            <div className="grid grid-cols-2 gap-6 pt-4 border-t border-gray-100 dark:border-gray-800">
-              <div>
-                <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2">A member of</p>
-                <ul className="text-xs text-gray-600 dark:text-gray-400 space-y-1">
-                  <li>Google Developer Groups</li>
-                  <li>React Philippines</li>
-                </ul>
-              </div>
-              <div>
-                <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2">Social Links</p>
-                <div className="flex items-center gap-3">
-                  <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
-                    <FaLinkedin className="w-4 h-4" />
-                  </a>
-                  <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
-                    <FaGithub className="w-4 h-4" />
-                  </a>
-                </div>
-              </div>
-            </div>
           </section>
 
           {/* RIGHT COLUMN */}
@@ -322,6 +297,7 @@ export default function PortfolioPage() {
                   { role: "Full-Stack Developer", company: "Tech Innovations Inc.", year: "2023 – Present" },
                   { role: "Frontend Engineer", company: "Digital Solutions Co.", year: "2021 – 2023" },
                   { role: "Junior Developer", company: "StartUp Labs", year: "2020 – 2021" },
+                  { role: "Student", company: "Mindoro State University", year: "2022 – 2026" },
                 ].map((exp, idx) => (
                   <li key={idx} className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-black dark:bg-white mt-1.5 flex-shrink-0" />
