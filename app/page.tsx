@@ -328,31 +328,47 @@ export default function PortfolioPage() {
           </aside>
         </div>
         
+        {/* ========== CERTIFICATIONS (NOW CLICKABLE) ========== */}
         <section>
           <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
             Recent Certifications
           </h2>
           <div className="grid grid-cols-2 gap-4">
-            <Card className="bg-gray-50 dark:bg-gray-800 border-none shadow-sm">
-              <CardContent className="p-4">
-                <p className="font-semibold text-sm text-gray-900 dark:text-white">
-                  Information Technology Specialist — Data Analytics
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  Commission on Higher Education – 2023
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="bg-gray-50 dark:bg-gray-800 border-none shadow-sm">
-              <CardContent className="p-4">
-                <p className="font-semibold text-sm text-gray-900 dark:text-white">
-                  AWS Cloud Practitioner
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  Amazon Web Services – 2024
-                </p>
-              </CardContent>
-            </Card>
+            <a
+              href="/analytics-cert.jpg"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block transition-transform hover:scale-[1.02]"
+            >
+              <Card className="bg-gray-50 dark:bg-gray-800 border-none shadow-sm cursor-pointer hover:shadow-md transition-shadow">
+                <CardContent className="p-4">
+                  <p className="font-semibold text-sm text-gray-900 dark:text-white">
+                    Information Technology Specialist — Data Analytics
+                  </p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    MC Tech Training & Assessment Center – 2026
+                  </p>
+                </CardContent>
+              </Card>
+            </a>
+
+            <a
+              href="/google-cert.png"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block transition-transform hover:scale-[1.02]"
+            >
+              <Card className="bg-gray-50 dark:bg-gray-800 border-none shadow-sm cursor-pointer hover:shadow-md transition-shadow">
+                <CardContent className="p-4">
+                  <p className="font-semibold text-sm text-gray-900 dark:text-white">
+                    Google IT Support
+                  </p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    Google – 2026
+                  </p>
+                </CardContent>
+              </Card>
+            </a>
           </div>
         </section>
 
