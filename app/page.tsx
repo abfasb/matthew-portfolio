@@ -76,7 +76,7 @@ export default function PortfolioPage() {
             </div>
 
             <p className="font-medium text-gray-800 dark:text-gray-200 mt-2">
-              Student & Freelance Developer | Tech Enthusiast
+              Software Developer | Tech Enthusiast
             </p>
 
             <div className="flex flex-wrap items-center gap-3 mt-4">
@@ -310,25 +310,24 @@ export default function PortfolioPage() {
             </div>
 
             <div className="space-y-3 pt-4 border-t border-gray-100 dark:border-gray-800">
-              <Button variant="outline" className="w-full gap-2 justify-start dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800">
-                <Mail className="w-4 h-4" />
-                Send Email
+              <Button 
+                asChild
+                variant="outline" 
+                className="w-full gap-2 justify-start dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
+              >
+                <a href="/Matthew_Balinton_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                  <BookOpen className="w-4 h-4" />
+                  View Resume
+                </a>
               </Button>
               <Button className="w-full gap-2 justify-start bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100">
                 <Calendar className="w-4 h-4" />
-                Schedule a Call
-              </Button>
-              <Button variant="outline" className="w-full gap-2 justify-start dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800">
-                <BookOpen className="w-4 h-4" />
-                Read my Blog
+                Send Email
               </Button>
             </div>
           </aside>
         </div>
-
-        {/* ========== FULL WIDTH SECTIONS ========== */}
         
-        {/* RECENT CERTIFICATIONS */}
         <section>
           <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
             Recent Certifications
@@ -337,30 +336,10 @@ export default function PortfolioPage() {
             <Card className="bg-gray-50 dark:bg-gray-800 border-none shadow-sm">
               <CardContent className="p-4">
                 <p className="font-semibold text-sm text-gray-900 dark:text-white">
-                  CHED-UniFAST Scholar
+                  Information Technology Specialist — Data Analytics
                 </p>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                   Commission on Higher Education – 2023
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="bg-gray-50 dark:bg-gray-800 border-none shadow-sm">
-              <CardContent className="p-4">
-                <p className="font-semibold text-sm text-gray-900 dark:text-white">
-                  AWS Cloud Practitioner
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  Amazon Web Services – 2024
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="bg-gray-50 dark:bg-gray-800 border-none shadow-sm">
-              <CardContent className="p-4">
-                <p className="font-semibold text-sm text-gray-900 dark:text-white">
-                  AWS Cloud Practitioner
-                </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  Amazon Web Services – 2024
                 </p>
               </CardContent>
             </Card>
