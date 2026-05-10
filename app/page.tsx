@@ -102,25 +102,15 @@ export default function PortfolioPage() {
           </div>
         </header>
 
-        {/* ========== MAIN GRID ========== */}
         <div className="grid grid-cols-12 gap-8">
           <section className="col-span-7 space-y-10">
             <div>
               <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">About</h2>
               <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300 mb-3">
-                I’m a student developer at Mindoro State University and a freelance
-                full-stack developer passionate about building clean, scalable web
-                applications. I love turning ideas into real products that people
-                enjoy using.
+               I’m a fresh graduate and aspiring full-stack developer from Mindoro State University passionate about building clean, scalable, and user-friendly web applications. I enjoy turning ideas into real digital products while continuously improving my skills in both frontend and backend development.
               </p>
               <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300 mb-3">
-                While studying, I take on freelance projects that sharpen my skills
-                in both frontend and backend technologies, always striving for
-                efficient, user‑friendly solutions.
-              </p>
-              <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300">
-                I’m based in the Philippines and always open to new challenges and
-                collaborative opportunities.
+               During my studies, I worked on personal and freelance projects using modern web technologies, gaining hands-on experience in developing responsive and efficient applications. I’m always eager to learn new technologies, take on challenges, and collaborate on meaningful projects.
               </p>
             </div>
 
