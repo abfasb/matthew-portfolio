@@ -16,6 +16,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogDescription,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import {
@@ -28,6 +29,7 @@ import {
   ChevronRight as ChevronRightIcon,
   Sun,
   Moon,
+  X,
 } from "lucide-react";
 import logo from "@/public/matt-id.jpg";
 
@@ -37,18 +39,54 @@ const allTech = {
   "DevOps & Cloud": ["Docker", "Vercel", "AWS", "GitHub Actions", "Firebase"],
 };
 
+const galleryImages = [
+  "/carousel-1.jpg",
+  "/carousel-2.jpg",
+  "/carousel-3.jpg",
+  "/carousel-4.jpg",
+];
+
 export default function PortfolioPage() {
   const [viewAllOpen, setViewAllOpen] = useState(false);
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
+  // Gallery state
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Theme mounted effect
   useEffect(() => setMounted(true), []);
-  if (!mounted) return null;
+
+  // Keyboard navigation effect
+  useEffect(() => {
+    if (!galleryOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        setCurrentIndex((prev) => (prev === 0 ? galleryImages.length - 1 : prev - 1));
+      }
+      if (e.key === "ArrowRight") {
+        setCurrentIndex((prev) => (prev === galleryImages.length - 1 ? 0 : prev + 1));
+      }
+      if (e.key === "Escape") setGalleryOpen(false);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [galleryOpen]);
+
+  if (!mounted) {
+    return <div className="bg-white dark:bg-gray-950 min-h-screen" />;
+  }
 
   const isDark = resolvedTheme === "dark";
 
   const toggleTheme = () => {
     setTheme(isDark ? "light" : "dark");
+  };
+
+  const openGallery = (index: number) => {
+    setCurrentIndex(index);
+    setGalleryOpen(true);
   };
 
   return (
@@ -82,7 +120,7 @@ export default function PortfolioPage() {
             <div className="flex flex-wrap items-center gap-3 mt-4">
               <Button variant="outline" className="bg-black hover:bg-gray-900 text-white gap-2 shadow-sm dark:bg-white dark:text-black dark:hover:bg-gray-100">
                 <BookOpen className="w-4 h-4" />
-               Download Resume
+                Download Resume
               </Button>
               <Button variant="outline" className="gap-2 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800">
                 <Mail className="w-4 h-4" />
@@ -107,10 +145,10 @@ export default function PortfolioPage() {
             <div>
               <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">About</h2>
               <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300 mb-3">
-               I’m a fresh graduate and aspiring full-stack developer from Mindoro State University passionate about building clean, scalable, and user-friendly web applications. I enjoy turning ideas into real digital products while continuously improving my skills in both frontend and backend development.
+                I’m a fresh graduate and aspiring full-stack developer from Mindoro State University passionate about building clean, scalable, and user-friendly web applications. I enjoy turning ideas into real digital products while continuously improving my skills in both frontend and backend development.
               </p>
               <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300 mb-3">
-               During my studies, I worked on personal and freelance projects using modern web technologies, gaining hands-on experience in developing responsive and efficient applications. I’m always eager to learn new technologies, take on challenges, and collaborate on meaningful projects.
+                During my studies, I worked on personal and freelance projects using modern web technologies, gaining hands-on experience in developing responsive and efficient applications. I’m always eager to learn new technologies, take on challenges, and collaborate on meaningful projects.
               </p>
             </div>
 
@@ -361,25 +399,77 @@ export default function PortfolioPage() {
           </div>
         </section>
 
-        {/* GALLERY */}
+        {/* ========== GALLERY WITH PROPERLY SCALED FULL-SCREEN VIEWER ========== */}
         <section>
           <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Gallery</h2>
-          <div className="relative">
-            <button className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 shadow-sm">
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <div className="grid grid-cols-4 gap-4 px-12">
-              {[1, 2, 3, 4].map((n) => (
-                <div
-                  key={n}
-                  className="aspect-square bg-gray-100 dark:bg-gray-800 rounded-md border border-gray-200 dark:border-gray-700"
-                ></div>
-              ))}
-            </div>
-            <button className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 shadow-sm">
-              <ChevronRightIcon className="w-4 h-4" />
-            </button>
+          
+          <div className="grid grid-cols-4 gap-4">
+            {galleryImages.map((src, index) => (
+              <div
+                key={index}
+                onClick={() => openGallery(index)}
+                className="aspect-square rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 
+                           cursor-pointer hover:shadow-lg transition-shadow duration-200"
+              >
+                <img
+                  src={src}
+                  alt={`Gallery image ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
           </div>
+
+          {/* Full-screen lightbox – images now always fit the viewport */}
+          <Dialog open={galleryOpen} onOpenChange={setGalleryOpen}>
+            <DialogContent 
+              className="!w-screen !h-screen !max-w-none !max-h-none !overflow-hidden p-0 bg-black/95 border-none rounded-none"
+              aria-describedby="gallery-description"
+            >
+              <DialogHeader className="sr-only">
+                <DialogTitle>Gallery Image {currentIndex + 1}</DialogTitle>
+                <DialogDescription>
+                  Full screen image viewer. Use arrow keys or buttons to navigate.
+                </DialogDescription>
+              </DialogHeader>
+
+              <button
+                onClick={() => setGalleryOpen(false)}
+                className="absolute top-4 right-4 z-50 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center backdrop-blur-md transition-colors"
+                aria-label="Close gallery"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              <div className="flex items-center justify-center w-full h-full absolute inset-0">
+                <img
+                  src={galleryImages[currentIndex]}
+                  alt={`Gallery ${currentIndex + 1}`}
+                  className="max-w-full max-h-full w-auto h-auto object-contain select-none"
+                />
+
+                <button
+                  onClick={() => setCurrentIndex((prev) => (prev === 0 ? galleryImages.length - 1 : prev - 1))}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-40 w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center backdrop-blur-md transition-colors"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+
+                <button
+                  onClick={() => setCurrentIndex((prev) => (prev === galleryImages.length - 1 ? 0 : prev + 1))}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-40 w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center backdrop-blur-md transition-colors"
+                  aria-label="Next image"
+                >
+                  <ChevronRightIcon className="w-6 h-6" />
+                </button>
+
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white/10 backdrop-blur-md text-white text-sm px-4 py-2 rounded-full">
+                  {currentIndex + 1} / {galleryImages.length}
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
         </section>
 
         <footer className="py-8 border-t border-gray-100 dark:border-gray-800">
