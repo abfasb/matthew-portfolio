@@ -338,7 +338,7 @@ export default function PortfolioPage() {
                 Dr Maria Teresa Carido
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400">
-                Travel Order Management
+                APCO - Oriental Mindoro
               </p>
               <div className="flex items-center gap-1.5 mt-4">
                 {Array.from({ length: 5 }).map((_, i) => (
