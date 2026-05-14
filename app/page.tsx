@@ -20,7 +20,6 @@ import {
 } from "@/components/ui/dialog";
 import {
   MapPin,
-  BadgeCheck,
   Mail,
   Calendar,
   BookOpen,
@@ -33,16 +32,16 @@ import {
 import logo from "@/public/matt-id.jpg";
 
 const allTech = {
-  Frontend: ["React", "Next.js", "Tailwind CSS", "TypeScript", "Redux"],
-  Backend: ["Node.js", "Laravel", "Prisma", "Supabase", "Express", "REST APIs"],
+  Frontend: ["React", "Next.js", "JavaScript", "Tailwind CSS", "TypeScript", "Redux"],
+  Backend: ["Node.js", "Laravel", "Prisma", "Supabase", "Express.js", "REST APIs", "MongoDB", "OAuth", "MySQL", "PostgreSQL", ],
   "DevOps & Cloud": ["Docker", "Vercel", "AWS", "GitHub Actions", "Firebase"],
 };
 
 const galleryImages = [
   "/carousel-1.jpg",
   "/carousel-2.jpg",
-  "/carousel-3.jpg",
   "/carousel-4.jpg",
+  "/carousel-3.jpg",
 ];
 
 export default function PortfolioPage() {
@@ -85,7 +84,6 @@ export default function PortfolioPage() {
   return (
     <div className="bg-white dark:bg-gray-950 text-gray-800 dark:text-gray-100 font-sans antialiased transition-colors">
       <div className="max-w-[1100px] mx-auto px-8 py-12 space-y-16">
-        {/* Header – flex layout, no absolute positioning */}
         <header className="flex flex-wrap items-start gap-6">
           <Avatar className="w-32 h-32 overflow-hidden shadow-sm flex-shrink-0">
             <AvatarImage src={logo.src} alt="Matthew C. Balinton" />
@@ -99,7 +97,18 @@ export default function PortfolioPage() {
               <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
                 Matthew C. Balinton
               </h1>
-              <BadgeCheck className="w-5 h-5 text-blue-500 fill-current" />
+              {/* Custom verified badge */}
+              <svg
+                viewBox="0 0 24 24"
+                className="w-5 h-5 text-blue-500 fill-current"
+                aria-label="Verified"
+              >
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.5 14.5l-4-4 1.41-1.41L10.5 13.67l6.59-6.59L18.5 8.5l-8 8z"
+                />
+              </svg>
             </div>
 
             <div className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 mt-1">
@@ -117,19 +126,27 @@ export default function PortfolioPage() {
                 className="bg-black text-white gap-2 shadow-sm dark:bg-white dark:text-black dark:hover:text-gray-100"
               >
                 <BookOpen className="w-4 h-4" />
-                Download Resume
+                <a
+                  href="/Matthew_Balinton_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Resume
+                </a>
               </Button>
               <Button
                 variant="outline"
                 className="gap-2 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
+                asChild
               >
-                <Mail className="w-4 h-4" />
-                Send Email
+                <a href="mailto:matbalinton@gmail.com">
+                  <Mail className="w-4 h-4" />
+                  Send Email
+                </a>
               </Button>
             </div>
           </div>
 
-          {/* Theme toggle – now a natural flex item, guaranteed clickable */}
           <button
             onClick={() => setTheme(isDark ? "light" : "dark")}
             className="flex-shrink-0 flex items-center gap-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full px-3 py-1.5 text-xs text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors mt-1"
@@ -143,11 +160,8 @@ export default function PortfolioPage() {
           </button>
         </header>
 
-        {/* Main grid */}
         <div className="grid grid-cols-12 gap-8">
-          {/* Left column */}
           <section className="col-span-7 space-y-10">
-            {/* About */}
             <div>
               <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">About</h2>
               <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300 mb-3">
@@ -158,7 +172,6 @@ export default function PortfolioPage() {
               </p>
             </div>
 
-            {/* Tech Stack */}
             <div>
               <div className="flex justify-between items-center mb-3">
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">Tech Stack</h2>
@@ -224,7 +237,6 @@ export default function PortfolioPage() {
               </div>
             </div>
 
-            {/* Projects */}
             <div>
               <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Recent Projects</h2>
               <div className="grid grid-cols-2 gap-4">
@@ -258,9 +270,7 @@ export default function PortfolioPage() {
             </div>
           </section>
 
-          {/* Right column (aside) */}
           <aside className="col-span-5 space-y-10">
-            {/* Student card */}
             <Card className="bg-gradient-to-br from-gray-900 to-black text-white shadow-sm border-0 rounded-xl">
               <CardContent className="p-6">
                 <div className="flex justify-between items-start">
@@ -289,7 +299,6 @@ export default function PortfolioPage() {
               </CardContent>
             </Card>
 
-            {/* Experience */}
             <div>
               <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Experience</h2>
               <ul className="space-y-5">
@@ -305,7 +314,7 @@ export default function PortfolioPage() {
                       </p>
                     </div>
                     <span className="text-xs text-gray-400 dark:text-gray-500 ml-2 whitespace-nowrap">
-                      2022 – Present
+                      2024 – Present
                     </span>
                   </div>
                 </li>
@@ -328,7 +337,6 @@ export default function PortfolioPage() {
               </ul>
             </div>
 
-            {/* Recommendations */}
             <div>
               <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Recommendations</h2>
               <blockquote className="text-sm italic text-gray-600 dark:text-gray-400 font-serif mb-3">
@@ -354,7 +362,6 @@ export default function PortfolioPage() {
               </div>
             </div>
 
-            {/* Resume / Email buttons */}
             <div className="space-y-3 pt-4 border-t border-gray-100 dark:border-gray-800">
               <Button
                 asChild
@@ -370,15 +377,19 @@ export default function PortfolioPage() {
                   View Resume
                 </a>
               </Button>
-              <Button className="w-full gap-2 justify-start bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100">
-                <Calendar className="w-4 h-4" />
-                Send Email
+              <Button
+                className="w-full gap-2 justify-start bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100"
+                asChild
+              >
+                <a href="mailto:matbalinton@gmail.com">
+                  <Calendar className="w-4 h-4" />
+                  Send Email
+                </a>
               </Button>
             </div>
           </aside>
         </div>
 
-        {/* Certifications */}
         <section>
           <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
             Recent Certifications
@@ -422,7 +433,6 @@ export default function PortfolioPage() {
           </div>
         </section>
 
-        {/* Gallery */}
         <section>
           <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Gallery</h2>
           <div className="grid grid-cols-4 gap-4">
