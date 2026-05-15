@@ -28,12 +28,13 @@ import {
   Sun,
   Moon,
   X,
+  ExternalLink,
 } from "lucide-react";
 import logo from "@/public/matt-id.jpg";
 
 const allTech = {
   Frontend: ["React", "Next.js", "JavaScript", "Tailwind CSS", "TypeScript", "Redux"],
-  Backend: ["Node.js", "Laravel", "Prisma", "Supabase", "Express.js", "REST APIs", "MongoDB", "OAuth", "MySQL", "PostgreSQL", ],
+  Backend: ["Node.js", "Laravel", "Prisma", "Supabase", "Express.js", "REST APIs", "MongoDB", "OAuth", "MySQL", "PostgreSQL"],
   "DevOps & Cloud": ["Docker", "Vercel", "AWS", "GitHub Actions", "Firebase"],
 };
 
@@ -44,8 +45,37 @@ const galleryImages = [
   "/carousel-3.jpg",
 ];
 
+const allProjects = [
+  {
+    title: "TOMS (Travel Order Management System)",
+    description: "A comprehensive platform for managing travel orders with approval workflows.",
+    url: "https://da-travelorder.vercel.app",
+  },
+  {
+    title: "DILG AI-Driven Document Tracking for Calapan",
+    description: "Intelligent document tracking and management system for DILG Calapan City.",
+    url: "https://dilg-calapan.vercel.app",
+  },
+  {
+    title: "HealthTrack 360",
+    description: "Patient health records and analytics dashboard for clinics.",
+    url: "",
+  },
+  {
+    title: "Bright Cares System",
+    description: "E‑commerce platform with inventory management and AI‑driven sales prediction.",
+    url: "https://brightcares-autoparts.web.app",
+  },
+  {
+    title: "Geomapping with Spatial 3D Analysis",
+    description: "Interactive geospatial visualization and 3D terrain analysis tool.",
+    url: "https://da-geomapping.vercel.app",
+  },
+];
+
 export default function PortfolioPage() {
-  const [viewAllOpen, setViewAllOpen] = useState(false);
+  const [viewAllTechOpen, setViewAllTechOpen] = useState(false);
+  const [viewAllProjectsOpen, setViewAllProjectsOpen] = useState(false);
   const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -69,7 +99,6 @@ export default function PortfolioPage() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [galleryOpen]);
 
-  // Prevent rendering until mounted to avoid hydration mismatch
   if (!mounted) {
     return <div className="bg-white dark:bg-gray-950 min-h-screen" />;
   }
@@ -97,7 +126,6 @@ export default function PortfolioPage() {
               <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
                 Matthew C. Balinton
               </h1>
-              {/* Custom verified badge */}
               <svg
                 viewBox="0 0 24 24"
                 className="w-5 h-5 text-blue-500 fill-current"
@@ -175,7 +203,7 @@ export default function PortfolioPage() {
             <div>
               <div className="flex justify-between items-center mb-3">
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">Tech Stack</h2>
-                <Dialog open={viewAllOpen} onOpenChange={setViewAllOpen}>
+                <Dialog open={viewAllTechOpen} onOpenChange={setViewAllTechOpen}>
                   <DialogTrigger asChild>
                     <button className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
                       View All &gt;
@@ -226,7 +254,7 @@ export default function PortfolioPage() {
                         <Badge
                           variant="outline"
                           className="bg-gray-50 dark:bg-gray-800 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-700 font-medium text-xs cursor-pointer hover:text-gray-600 dark:hover:text-gray-300"
-                          onClick={() => setViewAllOpen(true)}
+                          onClick={() => setViewAllTechOpen(true)}
                         >
                           +{techs.length - 4} more
                         </Badge>
@@ -238,34 +266,106 @@ export default function PortfolioPage() {
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Recent Projects</h2>
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white">Recent Projects</h2>
+              </div>
               <div className="grid grid-cols-2 gap-4">
-                <Card className="border-gray-100 dark:border-gray-800 bg-gray-50/70 dark:bg-gray-900/60 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors shadow-sm rounded-lg">
-                  <CardContent className="p-4">
-                    <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
-                      TOMS (Travel Order Management System)
-                    </h3>
-                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
-                      A comprehensive platform for managing travel orders with approval workflows.
-                    </p>
-                    <span className="inline-block mt-2 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded">
-                      toms.gov.ph
-                    </span>
-                  </CardContent>
-                </Card>
-                <Card className="border-gray-100 dark:border-gray-800 bg-gray-50/70 dark:bg-gray-900/60 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors shadow-sm rounded-lg">
-                  <CardContent className="p-4">
-                    <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
-                      HealthTrack 360
-                    </h3>
-                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
-                      Patient health records and analytics dashboard for clinics.
-                    </p>
-                    <span className="inline-block mt-2 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded">
-                      healthtrack.ph
-                    </span>
-                  </CardContent>
-                </Card>
+                <a
+                  href="https://da-travelorder.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <Card className="border-gray-100 dark:border-gray-800 bg-gray-50/70 dark:bg-gray-900/60 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors shadow-sm rounded-lg h-full">
+                    <CardContent className="p-4">
+                      <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
+                        TOMS (Travel Order Management System)
+                      </h3>
+                      <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
+                        A comprehensive platform for managing travel orders with approval workflows.
+                      </p>
+                      <span className="inline-flex items-center gap-1 mt-2 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded">
+                        da-travelorder.vercel.app
+                        <ExternalLink className="w-2.5 h-2.5" />
+                      </span>
+                    </CardContent>
+                  </Card>
+                </a>
+                <a
+                  href="https://dilg-calapan.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <Card className="border-gray-100 dark:border-gray-800 bg-gray-50/70 dark:bg-gray-900/60 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors shadow-sm rounded-lg h-full">
+                    <CardContent className="p-4">
+                      <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
+                        DILG AI-Driven Document Tracking
+                      </h3>
+                      <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
+                        Intelligent document tracking and management system for DILG Calapan City.
+                      </p>
+                      <span className="inline-flex items-center gap-1 mt-2 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded">
+                        dilg-calapan.vercel.app
+                        <ExternalLink className="w-2.5 h-2.5" />
+                      </span>
+                    </CardContent>
+                  </Card>
+                </a>
+              </div>
+
+              <div className="mt-4">
+                <Dialog open={viewAllProjectsOpen} onOpenChange={setViewAllProjectsOpen}>
+                  <DialogTrigger asChild>
+                    <button className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors inline-flex items-center gap-1">
+                      View All Projects &gt;
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-3xl dark:bg-gray-900 dark:border-gray-800 rounded-xl border border-gray-200 dark:border-gray-800 shadow-2xl p-0 overflow-hidden">
+                    <DialogHeader className="px-6 pt-6 pb-3 border-b border-gray-100 dark:border-gray-800">
+                      <DialogTitle className="text-xl font-bold dark:text-white">
+                        All Projects
+                      </DialogTitle>
+                      <DialogDescription className="text-sm text-gray-500 dark:text-gray-400">
+                        A complete list of projects I have built or contributed to.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="px-6 py-4 max-h-[60vh] overflow-y-auto dialog-scrollbar-hide">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {allProjects.map((project) => (
+                          <Card
+                            key={project.title}
+                            className="border-gray-100 dark:border-gray-800 bg-gray-50/70 dark:bg-gray-900/60 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all shadow-sm hover:shadow-md rounded-xl"
+                          >
+                            <CardContent className="p-5">
+                              <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
+                                {project.title}
+                              </h3>
+                              <p className="text-xs text-gray-600 dark:text-gray-400 mt-2 line-clamp-3">
+                                {project.description}
+                              </p>
+                              {project.url ? (
+                                <a
+                                  href={project.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1 mt-3 font-mono text-[11px] text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-2 py-1 rounded-md hover:underline"
+                                >
+                                  {new URL(project.url).hostname}
+                                  <ExternalLink className="w-3 h-3" />
+                                </a>
+                              ) : (
+                                <span className="inline-block mt-3 font-mono text-[11px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-1 rounded-md">
+                                  Private / Demo
+                                </span>
+                              )}
+                            </CardContent>
+                          </Card>
+                        ))}
+                      </div>
+                    </div>
+                  </DialogContent>
+                </Dialog>
               </div>
             </div>
           </section>
@@ -517,6 +617,17 @@ export default function PortfolioPage() {
           </p>
         </footer>
       </div>
+
+      {/* Global style to hide scrollbar in the projects dialog */}
+      <style jsx global>{`
+        .dialog-scrollbar-hide {
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+        .dialog-scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </div>
   );
 }
