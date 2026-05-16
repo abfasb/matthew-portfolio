@@ -301,144 +301,140 @@ export default function PortfolioPage() {
                 ))}
               </div>
             </div>
-
-            <div>
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white">Recent Projects</h2>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {/* TOMS Card */}
-                <Card className="border-gray-100 dark:border-gray-800 bg-gray-50/70 dark:bg-gray-900/60 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors shadow-sm rounded-lg h-full">
-                  <CardContent className="p-4">
-                    <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
-                      TOMS (Travel Order Management System)
-                    </h3>
-                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
-                      A comprehensive platform for managing travel orders with approval workflows.
-                    </p>
-                    <div className="flex items-center gap-2 mt-2 flex-wrap">
-                      <a
-                        href="https://da-travelorder.vercel.app"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded hover:text-gray-600"
-                      >
-                        da-travelorder.vercel.app
-                        <ExternalLink className="w-2.5 h-2.5" />
-                      </a>
-                      <a
-                        href="https://github.com/abfasb/da-travel_order"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded hover:text-gray-600"
-                      >
-                        <FaGithub className="w-2.5 h-2.5" />
-                        Repo
-                      </a>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* DILG Card */}
-                <Card className="border-gray-100 dark:border-gray-800 bg-gray-50/70 dark:bg-gray-900/60 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors shadow-sm rounded-lg h-full">
-                  <CardContent className="p-4">
-                    <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
-                      DILG AI-Driven Document Tracking
-                    </h3>
-                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
-                      Intelligent document tracking and management system for DILG Calapan City.
-                    </p>
-                    <div className="flex items-center gap-2 mt-2 flex-wrap">
-                      <a
-                        href="https://dilg-calapan.vercel.app"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded hover:text-gray-600"
-                      >
-                        dilg-calapan.vercel.app
-                        <ExternalLink className="w-2.5 h-2.5" />
-                      </a>
-                      <a
-                        href="https://github.com/abfasb/dilg-calapan-capstone-frontend"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded hover:text-gray-600"
-                      >
-                        <FaGithub className="w-2.5 h-2.5" />
-                        Repo
-                      </a>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-
-              <div className="mt-4">
-                <Dialog open={viewAllProjectsOpen} onOpenChange={setViewAllProjectsOpen}>
-                  <DialogTrigger asChild>
-                    <button className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors inline-flex items-center gap-1">
-                      View All Projects &gt;
-                    </button>
-                  </DialogTrigger>
-                  <DialogContent className="sm:max-w-3xl dark:bg-gray-900 dark:border-gray-800 rounded-xl border border-gray-200 dark:border-gray-800 shadow-2xl p-0 overflow-hidden">
-                    <DialogHeader className="px-6 pt-6 pb-3 border-b border-gray-100 dark:border-gray-800">
-                      <DialogTitle className="text-xl font-bold dark:text-white">
-                        All Projects
-                      </DialogTitle>
-                      <DialogDescription className="text-sm text-gray-500 dark:text-gray-400">
-                        A complete list of projects I have built or contributed to.
-                      </DialogDescription>
-                    </DialogHeader>
-                    <div className="px-6 py-4 max-h-[60vh] overflow-y-auto dialog-scrollbar-hide">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        {allProjects.map((project) => (
-                          <Card
-                            key={project.title}
-                            className="border-gray-100 dark:border-gray-800 bg-gray-50/70 dark:bg-gray-900/60 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all shadow-sm hover:shadow-md rounded-xl"
-                          >
-                            <CardContent className="p-5">
-                              <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
-                                {project.title}
-                              </h3>
-                              <p className="text-xs text-gray-600 dark:text-gray-400 mt-2 line-clamp-3">
-                                {project.description}
-                              </p>
-                              <div className="flex flex-wrap items-center gap-2 mt-3">
-                                {project.url ? (
-                                  <a
-                                    href={project.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-1 font-mono text-[11px] text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-2 py-1 rounded-md hover:underline"
-                                  >
-                                    {new URL(project.url).hostname}
-                                    <ExternalLink className="w-3 h-3" />
-                                  </a>
-                                ) : (
-                                  <span className="inline-flex items-center gap-1 font-mono text-[11px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-1 rounded-md">
-                                    Private / Demo
-                                  </span>
-                                )}
-                                {project.github && (
-                                  <a
-                                    href={project.github}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-1 font-mono text-[11px] text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700"
-                                  >
-                                    <FaGithub className="w-3 h-3" />
-                                    Repository
-                                  </a>
-                                )}
-                              </div>
-                            </CardContent>
-                          </Card>
-                        ))}
+              <div>
+                <div className="flex justify-between items-center mb-4">
+                  <h2 className="text-xl font-bold text-gray-900 dark:text-white">Recent Projects</h2>
+                  <Dialog open={viewAllProjectsOpen} onOpenChange={setViewAllProjectsOpen}>
+                    <DialogTrigger asChild>
+                      <button className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors inline-flex items-center gap-1">
+                        View All Projects &gt;
+                      </button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-3xl dark:bg-gray-900 dark:border-gray-800 rounded-xl border border-gray-200 dark:border-gray-800 shadow-2xl p-0 overflow-hidden">
+                      <DialogHeader className="px-6 pt-6 pb-3 border-b border-gray-100 dark:border-gray-800">
+                        <DialogTitle className="text-xl font-bold dark:text-white">
+                          All Projects
+                        </DialogTitle>
+                        <DialogDescription className="text-sm text-gray-500 dark:text-gray-400">
+                          A complete list of projects I have built or contributed to.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="px-6 py-4 max-h-[60vh] overflow-y-auto dialog-scrollbar-hide">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          {allProjects.map((project) => (
+                            <Card
+                              key={project.title}
+                              className="border-gray-100 dark:border-gray-800 bg-gray-50/70 dark:bg-gray-900/60 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all shadow-sm hover:shadow-md rounded-xl"
+                            >
+                              <CardContent className="p-5">
+                                <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
+                                  {project.title}
+                                </h3>
+                                <p className="text-xs text-gray-600 dark:text-gray-400 mt-2 line-clamp-3">
+                                  {project.description}
+                                </p>
+                                <div className="flex flex-wrap items-center gap-2 mt-3">
+                                  {project.url ? (
+                                    <a
+                                      href={project.url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="inline-flex items-center gap-1 font-mono text-[11px] text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-2 py-1 rounded-md hover:underline"
+                                    >
+                                      {new URL(project.url).hostname}
+                                      <ExternalLink className="w-3 h-3" />
+                                    </a>
+                                  ) : (
+                                    <span className="inline-flex items-center gap-1 font-mono text-[11px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-1 rounded-md">
+                                      Private / Demo
+                                    </span>
+                                  )}
+                                  {project.github && (
+                                    <a
+                                      href={project.github}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="inline-flex items-center gap-1 font-mono text-[11px] text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700"
+                                    >
+                                      <FaGithub className="w-3 h-3" />
+                                      Repository
+                                    </a>
+                                  )}
+                                </div>
+                              </CardContent>
+                            </Card>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  </DialogContent>
-                </Dialog>
+                    </DialogContent>
+                  </Dialog>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* TOMS Card */}
+                  <Card className="border-gray-100 dark:border-gray-800 bg-gray-50/70 dark:bg-gray-900/60 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors shadow-sm rounded-lg h-full">
+                    <CardContent className="p-4">
+                      <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
+                        TOMS (Travel Order Management System)
+                      </h3>
+                      <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
+                        A comprehensive platform for managing travel orders with approval workflows.
+                      </p>
+                      <div className="flex items-center gap-2 mt-2 flex-wrap">
+                        <a
+                          href="https://da-travelorder.vercel.app"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded hover:text-gray-600"
+                        >
+                          da-travelorder.vercel.app
+                          <ExternalLink className="w-2.5 h-2.5" />
+                        </a>
+                        <a
+                          href="https://github.com/abfasb/da-travel_order"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded hover:text-gray-600"
+                        >
+                          <FaGithub className="w-2.5 h-2.5" />
+                          Repo
+                        </a>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* DILG Card */}
+                  <Card className="border-gray-100 dark:border-gray-800 bg-gray-50/70 dark:bg-gray-900/60 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors shadow-sm rounded-lg h-full">
+                    <CardContent className="p-4">
+                      <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
+                        DILG AI-Driven Document Tracking
+                      </h3>
+                      <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
+                        Intelligent document tracking and management system for DILG Calapan City.
+                      </p>
+                      <div className="flex items-center gap-2 mt-2 flex-wrap">
+                        <a
+                          href="https://dilg-calapan.vercel.app"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded hover:text-gray-600"
+                        >
+                          dilg-calapan.vercel.app
+                          <ExternalLink className="w-2.5 h-2.5" />
+                        </a>
+                        <a
+                          href="https://github.com/abfasb/dilg-calapan-capstone-frontend"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded hover:text-gray-600"
+                        >
+                          <FaGithub className="w-2.5 h-2.5" />
+                          Repo
+                        </a>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
               </div>
-            </div>
           </section>
 
           <aside className="lg:col-span-5 space-y-10">
