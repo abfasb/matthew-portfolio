@@ -118,18 +118,19 @@ export default function PortfolioPage() {
 
   return (
     <div className="bg-white dark:bg-gray-950 text-gray-800 dark:text-gray-100 font-sans antialiased transition-colors">
-      <div className="max-w-[1100px] mx-auto px-8 py-12 space-y-16">
-        <header className="flex flex-wrap items-start gap-6">
-          <Avatar className="w-32 h-32 overflow-hidden shadow-sm flex-shrink-0">
+      <div className="max-w-[1100px] mx-auto px-4 sm:px-8 py-8 sm:py-12 space-y-12 sm:space-y-16">
+        {/* Header - mobile: stack vertically and center */}
+        <header className="flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
+          <Avatar className="w-24 h-24 sm:w-32 sm:h-32 overflow-hidden shadow-sm flex-shrink-0">
             <AvatarImage src={logo.src} alt="Matthew C. Balinton" />
-            <AvatarFallback className="text-4xl bg-gray-100 dark:bg-gray-800 text-gray-400">
+            <AvatarFallback className="text-3xl sm:text-4xl bg-gray-100 dark:bg-gray-800 text-gray-400">
               MB
             </AvatarFallback>
           </Avatar>
 
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2">
-              <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <div className="flex-1 min-w-0 w-full">
+            <div className="flex items-center justify-center sm:justify-start gap-2 flex-wrap">
+              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
                 Matthew C. Balinton
               </h1>
               <svg
@@ -145,19 +146,19 @@ export default function PortfolioPage() {
               </svg>
             </div>
 
-            <div className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 mt-1">
+            <div className="flex items-center justify-center sm:justify-start gap-1 text-sm text-gray-600 dark:text-gray-400 mt-1">
               <MapPin className="w-4 h-4 text-gray-500 dark:text-gray-400" />
               <span>Philippines</span>
             </div>
 
-            <p className="font-medium text-gray-800 dark:text-gray-200 mt-2">
+            <p className="font-medium text-gray-800 dark:text-gray-200 mt-2 text-sm sm:text-base">
               Software Developer | Tech Enthusiast
             </p>
 
-            <div className="flex flex-wrap items-center gap-3 mt-4">
+            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3 mt-4">
               <Button
                 variant="outline"
-                className="bg-black text-white gap-2 shadow-sm dark:bg-white dark:text-black dark:hover:text-gray-100"
+                className="bg-black text-white gap-2 shadow-sm dark:bg-white dark:text-black dark:hover:text-gray-100 text-xs sm:text-sm"
               >
                 <BookOpen className="w-4 h-4" />
                 <a
@@ -170,7 +171,7 @@ export default function PortfolioPage() {
               </Button>
               <Button
                 variant="outline"
-                className="gap-2 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
+                className="gap-2 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800 text-xs sm:text-sm"
                 asChild
               >
                 <a href="mailto:matbalinton@gmail.com">
@@ -181,7 +182,7 @@ export default function PortfolioPage() {
 
               <Button
                 variant="outline"
-                className="gap-2 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
+                className="gap-2 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800 text-xs sm:text-sm"
                 asChild
               >
                 <a
@@ -195,7 +196,7 @@ export default function PortfolioPage() {
               </Button>
               <Button
                 variant="outline"
-                className="gap-2 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
+                className="gap-2 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800 text-xs sm:text-sm"
                 asChild
               >
                 <a
@@ -212,7 +213,7 @@ export default function PortfolioPage() {
 
           <button
             onClick={() => setTheme(isDark ? "light" : "dark")}
-            className="flex-shrink-0 flex items-center gap-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full px-3 py-1.5 text-xs text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors mt-1"
+            className="absolute top-4 right-4 sm:static flex-shrink-0 flex items-center gap-2 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full px-3 py-1.5 text-xs text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors mt-0 sm:mt-1"
             aria-label="Toggle dark mode"
           >
             {isDark ? (
@@ -223,8 +224,9 @@ export default function PortfolioPage() {
           </button>
         </header>
 
-        <div className="grid grid-cols-12 gap-8">
-          <section className="col-span-7 space-y-10">
+        {/* Main grid - stack on mobile */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <section className="lg:col-span-7 space-y-10">
             <div>
               <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">About</h2>
               <p className="text-sm leading-relaxed text-gray-700 dark:text-gray-300 mb-3">
@@ -304,7 +306,7 @@ export default function PortfolioPage() {
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">Recent Projects</h2>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* TOMS Card */}
                 <Card className="border-gray-100 dark:border-gray-800 bg-gray-50/70 dark:bg-gray-900/60 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors shadow-sm rounded-lg h-full">
                   <CardContent className="p-4">
@@ -439,7 +441,7 @@ export default function PortfolioPage() {
             </div>
           </section>
 
-          <aside className="col-span-5 space-y-10">
+          <aside className="lg:col-span-5 space-y-10">
             <Card className="bg-gradient-to-br from-gray-900 to-black text-white shadow-sm border-0 rounded-xl">
               <CardContent className="p-6">
                 <div className="flex justify-between items-start">
@@ -459,7 +461,7 @@ export default function PortfolioPage() {
                 </div>
                 <div className="mt-8 space-y-1">
                   <p className="text-[10px] tracking-widest text-gray-400 uppercase">
-                    Student Access Card
+                    Software Developer
                   </p>
                   <p className="text-sm font-semibold tracking-wide">
                     MATTHEW C. BALINTON
@@ -473,7 +475,7 @@ export default function PortfolioPage() {
               <ul className="space-y-5">
                 <li className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-black dark:bg-white mt-1.5 flex-shrink-0" />
-                  <div className="flex-1 flex justify-between items-baseline">
+                  <div className="flex-1 flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 sm:gap-0">
                     <div>
                       <p className="font-semibold text-sm text-gray-900 dark:text-white">
                         Freelance Developer
@@ -482,14 +484,14 @@ export default function PortfolioPage() {
                         Self‑employed
                       </p>
                     </div>
-                    <span className="text-xs text-gray-400 dark:text-gray-500 ml-2 whitespace-nowrap">
+                    <span className="text-xs text-gray-400 dark:text-gray-500 sm:ml-2 whitespace-nowrap">
                       2024 – Present
                     </span>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-black dark:bg-white mt-1.5 flex-shrink-0" />
-                  <div className="flex-1 flex justify-between items-baseline">
+                  <div className="flex-1 flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1 sm:gap-0">
                     <div>
                       <p className="font-semibold text-sm text-gray-900 dark:text-white">
                         Student
@@ -498,7 +500,7 @@ export default function PortfolioPage() {
                         Mindoro State University
                       </p>
                     </div>
-                    <span className="text-xs text-gray-400 dark:text-gray-500 ml-2 whitespace-nowrap">
+                    <span className="text-xs text-gray-400 dark:text-gray-500 sm:ml-2 whitespace-nowrap">
                       2022 – 2026
                     </span>
                   </div>
@@ -563,7 +565,7 @@ export default function PortfolioPage() {
           <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
             Recent Certifications
           </h2>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <a
               href="/analytics-cert.jpg"
               target="_blank"
@@ -604,7 +606,7 @@ export default function PortfolioPage() {
 
         <section>
           <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Gallery</h2>
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {galleryImages.map((src, index) => (
               <div
                 key={index}
@@ -654,10 +656,10 @@ export default function PortfolioPage() {
                       prev === 0 ? galleryImages.length - 1 : prev - 1
                     )
                   }
-                  className="absolute left-4 top-1/2 -translate-y-1/2 z-40 w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center backdrop-blur-md transition-colors"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-40 w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center backdrop-blur-md transition-colors"
                   aria-label="Previous image"
                 >
-                  <ChevronLeft className="w-6 h-6" />
+                  <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
                 </button>
 
                 <button
@@ -666,10 +668,10 @@ export default function PortfolioPage() {
                       prev === galleryImages.length - 1 ? 0 : prev + 1
                     )
                   }
-                  className="absolute right-4 top-1/2 -translate-y-1/2 z-40 w-14 h-14 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center backdrop-blur-md transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-40 w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center backdrop-blur-md transition-colors"
                   aria-label="Next image"
                 >
-                  <ChevronRightIcon className="w-6 h-6" />
+                  <ChevronRightIcon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </button>
 
                 <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white/10 backdrop-blur-md text-white text-sm px-4 py-2 rounded-full">
