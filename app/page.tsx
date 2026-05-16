@@ -29,10 +29,9 @@ import {
   Moon,
   X,
   ExternalLink,
-  Github,
-  Linkedin,
 } from "lucide-react";
 import logo from "@/public/matt-id.jpg";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const allTech = {
   Frontend: ["React", "Next.js", "JavaScript", "Tailwind CSS", "TypeScript", "Redux"],
@@ -180,7 +179,6 @@ export default function PortfolioPage() {
                 </a>
               </Button>
 
-              {/* GitHub and LinkedIn */}
               <Button
                 variant="outline"
                 className="gap-2 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
@@ -191,7 +189,7 @@ export default function PortfolioPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Github className="w-4 h-4" />
+                  <FaGithub className="w-4 h-4" />
                   GitHub
                 </a>
               </Button>
@@ -205,7 +203,7 @@ export default function PortfolioPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Linkedin className="w-4 h-4" />
+                  <FaLinkedin className="w-4 h-4" />
                   LinkedIn
                 </a>
               </Button>
@@ -307,72 +305,69 @@ export default function PortfolioPage() {
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">Recent Projects</h2>
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <a
-                  href="https://da-travelorder.vercel.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block"
-                >
-                  <Card className="border-gray-100 dark:border-gray-800 bg-gray-50/70 dark:bg-gray-900/60 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors shadow-sm rounded-lg h-full">
-                    <CardContent className="p-4">
-                      <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
-                        TOMS (Travel Order Management System)
-                      </h3>
-                      <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
-                        A comprehensive platform for managing travel orders with approval workflows.
-                      </p>
-                      <div className="flex items-center gap-2 mt-2 flex-wrap">
-                        <span className="inline-flex items-center gap-1 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded">
-                          da-travelorder.vercel.app
-                          <ExternalLink className="w-2.5 h-2.5" />
-                        </span>
-                        <a
-                          href="https://github.com/abfasb/da-travel_order"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded hover:text-gray-600"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <Github className="w-2.5 h-2.5" />
-                          Repo
-                        </a>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </a>
-                <a
-                  href="https://dilg-calapan.vercel.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block"
-                >
-                  <Card className="border-gray-100 dark:border-gray-800 bg-gray-50/70 dark:bg-gray-900/60 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors shadow-sm rounded-lg h-full">
-                    <CardContent className="p-4">
-                      <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
-                        DILG AI-Driven Document Tracking
-                      </h3>
-                      <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
-                        Intelligent document tracking and management system for DILG Calapan City.
-                      </p>
-                      <div className="flex items-center gap-2 mt-2 flex-wrap">
-                        <span className="inline-flex items-center gap-1 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded">
-                          dilg-calapan.vercel.app
-                          <ExternalLink className="w-2.5 h-2.5" />
-                        </span>
-                        <a
-                          href="https://github.com/abfasb/dilg-calapan-capstone-frontend"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded hover:text-gray-600"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <Github className="w-2.5 h-2.5" />
-                          Repo
-                        </a>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </a>
+                {/* TOMS Card */}
+                <Card className="border-gray-100 dark:border-gray-800 bg-gray-50/70 dark:bg-gray-900/60 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors shadow-sm rounded-lg h-full">
+                  <CardContent className="p-4">
+                    <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
+                      TOMS (Travel Order Management System)
+                    </h3>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
+                      A comprehensive platform for managing travel orders with approval workflows.
+                    </p>
+                    <div className="flex items-center gap-2 mt-2 flex-wrap">
+                      <a
+                        href="https://da-travelorder.vercel.app"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded hover:text-gray-600"
+                      >
+                        da-travelorder.vercel.app
+                        <ExternalLink className="w-2.5 h-2.5" />
+                      </a>
+                      <a
+                        href="https://github.com/abfasb/da-travel_order"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded hover:text-gray-600"
+                      >
+                        <FaGithub className="w-2.5 h-2.5" />
+                        Repo
+                      </a>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* DILG Card */}
+                <Card className="border-gray-100 dark:border-gray-800 bg-gray-50/70 dark:bg-gray-900/60 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors shadow-sm rounded-lg h-full">
+                  <CardContent className="p-4">
+                    <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
+                      DILG AI-Driven Document Tracking
+                    </h3>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
+                      Intelligent document tracking and management system for DILG Calapan City.
+                    </p>
+                    <div className="flex items-center gap-2 mt-2 flex-wrap">
+                      <a
+                        href="https://dilg-calapan.vercel.app"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded hover:text-gray-600"
+                      >
+                        dilg-calapan.vercel.app
+                        <ExternalLink className="w-2.5 h-2.5" />
+                      </a>
+                      <a
+                        href="https://github.com/abfasb/dilg-calapan-capstone-frontend"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded hover:text-gray-600"
+                      >
+                        <FaGithub className="w-2.5 h-2.5" />
+                        Repo
+                      </a>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
 
               <div className="mt-4">
@@ -428,7 +423,7 @@ export default function PortfolioPage() {
                                     rel="noopener noreferrer"
                                     className="inline-flex items-center gap-1 font-mono text-[11px] text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700"
                                   >
-                                    <Github className="w-3 h-3" />
+                                    <FaGithub className="w-3 h-3" />
                                     Repository
                                   </a>
                                 )}
