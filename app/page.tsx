@@ -29,6 +29,8 @@ import {
   Moon,
   X,
   ExternalLink,
+  Github,
+  Linkedin,
 } from "lucide-react";
 import logo from "@/public/matt-id.jpg";
 
@@ -50,26 +52,31 @@ const allProjects = [
     title: "TOMS (Travel Order Management System)",
     description: "A comprehensive platform for managing travel orders with approval workflows.",
     url: "https://da-travelorder.vercel.app",
+    github: "https://github.com/abfasb/da-travel_order",
   },
   {
     title: "DILG AI-Driven Document Tracking for Calapan",
     description: "Intelligent document tracking and management system for DILG Calapan City.",
     url: "https://dilg-calapan.vercel.app",
+    github: "https://github.com/abfasb/dilg-calapan-capstone-frontend",
   },
   {
     title: "HealthTrack 360",
     description: "Patient health records and analytics dashboard for clinics.",
     url: "",
+    github: "https://github.com/abfasb/healthtrack-360",
   },
   {
     title: "Bright Cares System",
     description: "E‑commerce platform with inventory management and AI‑driven sales prediction.",
     url: "https://brightcares-autoparts.web.app",
+    github: "",
   },
   {
     title: "Geomapping with Spatial 3D Analysis",
     description: "Interactive geospatial visualization and 3D terrain analysis tool.",
     url: "https://da-geomapping.vercel.app",
+    github: "https://github.com/abfasb/da-geomapping",
   },
 ];
 
@@ -170,6 +177,36 @@ export default function PortfolioPage() {
                 <a href="mailto:matbalinton@gmail.com">
                   <Mail className="w-4 h-4" />
                   Send Email
+                </a>
+              </Button>
+
+              {/* GitHub and LinkedIn */}
+              <Button
+                variant="outline"
+                className="gap-2 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
+                asChild
+              >
+                <a
+                  href="https://github.com/abfasb/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Github className="w-4 h-4" />
+                  GitHub
+                </a>
+              </Button>
+              <Button
+                variant="outline"
+                className="gap-2 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
+                asChild
+              >
+                <a
+                  href="https://www.linkedin.com/in/matthew-balinton-9478a7255/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Linkedin className="w-4 h-4" />
+                  LinkedIn
                 </a>
               </Button>
             </div>
@@ -284,10 +321,22 @@ export default function PortfolioPage() {
                       <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
                         A comprehensive platform for managing travel orders with approval workflows.
                       </p>
-                      <span className="inline-flex items-center gap-1 mt-2 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded">
-                        da-travelorder.vercel.app
-                        <ExternalLink className="w-2.5 h-2.5" />
-                      </span>
+                      <div className="flex items-center gap-2 mt-2 flex-wrap">
+                        <span className="inline-flex items-center gap-1 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded">
+                          da-travelorder.vercel.app
+                          <ExternalLink className="w-2.5 h-2.5" />
+                        </span>
+                        <a
+                          href="https://github.com/abfasb/da-travel_order"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded hover:text-gray-600"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <Github className="w-2.5 h-2.5" />
+                          Repo
+                        </a>
+                      </div>
                     </CardContent>
                   </Card>
                 </a>
@@ -305,10 +354,22 @@ export default function PortfolioPage() {
                       <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
                         Intelligent document tracking and management system for DILG Calapan City.
                       </p>
-                      <span className="inline-flex items-center gap-1 mt-2 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded">
-                        dilg-calapan.vercel.app
-                        <ExternalLink className="w-2.5 h-2.5" />
-                      </span>
+                      <div className="flex items-center gap-2 mt-2 flex-wrap">
+                        <span className="inline-flex items-center gap-1 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded">
+                          dilg-calapan.vercel.app
+                          <ExternalLink className="w-2.5 h-2.5" />
+                        </span>
+                        <a
+                          href="https://github.com/abfasb/dilg-calapan-capstone-frontend"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded hover:text-gray-600"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <Github className="w-2.5 h-2.5" />
+                          Repo
+                        </a>
+                      </div>
                     </CardContent>
                   </Card>
                 </a>
@@ -344,21 +405,34 @@ export default function PortfolioPage() {
                               <p className="text-xs text-gray-600 dark:text-gray-400 mt-2 line-clamp-3">
                                 {project.description}
                               </p>
-                              {project.url ? (
-                                <a
-                                  href={project.url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-1 mt-3 font-mono text-[11px] text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-2 py-1 rounded-md hover:underline"
-                                >
-                                  {new URL(project.url).hostname}
-                                  <ExternalLink className="w-3 h-3" />
-                                </a>
-                              ) : (
-                                <span className="inline-block mt-3 font-mono text-[11px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-1 rounded-md">
-                                  Private / Demo
-                                </span>
-                              )}
+                              <div className="flex flex-wrap items-center gap-2 mt-3">
+                                {project.url ? (
+                                  <a
+                                    href={project.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1 font-mono text-[11px] text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-2 py-1 rounded-md hover:underline"
+                                  >
+                                    {new URL(project.url).hostname}
+                                    <ExternalLink className="w-3 h-3" />
+                                  </a>
+                                ) : (
+                                  <span className="inline-flex items-center gap-1 font-mono text-[11px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-1 rounded-md">
+                                    Private / Demo
+                                  </span>
+                                )}
+                                {project.github && (
+                                  <a
+                                    href={project.github}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1 font-mono text-[11px] text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700"
+                                  >
+                                    <Github className="w-3 h-3" />
+                                    Repository
+                                  </a>
+                                )}
+                              </div>
                             </CardContent>
                           </Card>
                         ))}
@@ -618,16 +692,9 @@ export default function PortfolioPage() {
         </footer>
       </div>
 
-      {/* Global style to hide scrollbar in the projects dialog */}
-      <style jsx global>{`
-        .dialog-scrollbar-hide {
-          scrollbar-width: none;
-          -ms-overflow-style: none;
-        }
-        .dialog-scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
+      <style dangerouslySetInnerHTML={{
+        __html: `.dialog-scrollbar-hide { scrollbar-width: none; -ms-overflow-style: none; } .dialog-scrollbar-hide::-webkit-scrollbar { display: none; }`
+      }} />
     </div>
   );
 }
