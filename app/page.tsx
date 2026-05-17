@@ -50,7 +50,7 @@ const allProjects = [
   {
     title: "TOMS (Travel Order Management System)",
     description: "A comprehensive platform for managing travel orders with approval workflows.",
-    url: "https://da-travelorder.vercel.app",
+    url: "https://da-travel-order.vercel.app",
     github: "https://github.com/abfasb/da-travel_order",
   },
   {
@@ -381,12 +381,12 @@ export default function PortfolioPage() {
                       </p>
                       <div className="flex items-center gap-2 mt-2 flex-wrap">
                         <a
-                          href="https://da-travelorder.vercel.app"
+                          href="https://da-travel-order.vercel.app"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1 font-mono text-[10px] text-gray-400 dark:text-gray-500 bg-white/60 dark:bg-black/40 px-2 py-0.5 rounded hover:text-gray-600"
                         >
-                          da-travelorder.vercel.app
+                          da-travel-order.vercel.app
                           <ExternalLink className="w-2.5 h-2.5" />
                         </a>
                         <a
@@ -513,7 +513,7 @@ export default function PortfolioPage() {
                 Dr Maria Teresa Carido
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400">
-                APCO - Oriental Mindoro
+                Department of Agriculture APCO - Oriental Mindoro
               </p>
               <div className="flex items-center gap-1.5 mt-4">
                 {Array.from({ length: 5 }).map((_, i) => (
